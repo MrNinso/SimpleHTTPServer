@@ -9,54 +9,51 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.util.TreeMap;
-
 public class RouterTest {
     static HTTPServer server;
     static OkHttpClient client;
 
     @BeforeClass
     public static void setup() throws Exception {
-        TreeMap<String, Server.OnResquest> routes = new TreeMap<>();
 
-        routes.put("echo", request ->
-                new ServerResponse(200, request.body.getBytes())
-        );
+        Router router = new Router(routes -> {
+            routes.put("echo", request ->
+                    new ServerResponse(200, request.body.getBytes())
+            );
 
-        routes.put("invert", request -> {
-            StringBuilder inverted = new StringBuilder();
+            routes.put("invert", request -> {
+                StringBuilder inverted = new StringBuilder();
 
-            for (int i = request.body.length()-1; i >= 0; i--) {
-                inverted.append(request.body.charAt(i));
-            }
+                for (int i = request.body.length() - 1; i >= 0; i--) {
+                    inverted.append(request.body.charAt(i));
+                }
 
-            return new ServerResponse(200, inverted.toString().getBytes());
-        });
+                return new ServerResponse(200, inverted.toString().getBytes());
+            });
 
-        routes.put("toLowerCase", request ->
-                new ServerResponse(200, request.body.toLowerCase().getBytes())
-        );
+            routes.put("toLowerCase", request ->
+                    new ServerResponse(200, request.body.toLowerCase().getBytes())
+            );
 
-        routes.put("Login", request -> {
-            if (request.body.equals("Sup3rP#ssw0rd!@")) {
-                TreeMap<String, Server.OnResquest> rs = new TreeMap<>();
+            routes.put("Login", new Router(routes1 -> {
+                routes1.put("index", clientRequest ->
+                        (clientRequest.body.equals("Sup3rP#ssw0rd!@")) ?
+                                new ServerResponse(200, "this is my super private index".getBytes()) :
+                                new ServerResponse(401));
 
-                rs.put("index", request1 ->
-                   new ServerResponse(200, "this is my super private index".getBytes())
+                routes1.put("secret", clientRequest ->
+                        (clientRequest.body.equals("Sup3rP#ssw0rd!@")) ?
+                                new ServerResponse(200, "this is a secret".getBytes()) :
+                                new ServerResponse(401)
                 );
 
-                rs.put("secret", request1 ->
-                    new ServerResponse(200, "this is a secret".getBytes())
-                );
+                return routes1;
+            }));
 
-                Router router = new Router(rs);
-
-                return router.request(request);
-            }
-            return new ServerResponse(401);
+            return routes;
         });
 
-        server = new HTTPServer(8001, new Router(routes));
+        server = new HTTPServer(8001, router);
 
         client = new OkHttpClient();
         try {

@@ -5,14 +5,10 @@ import com.sun.net.httpserver.HttpContext;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpPrincipal;
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
-import java.io.StringWriter;
 import java.net.InetSocketAddress;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 
 public class ClientRequest {
     public HttpContext httpContext;

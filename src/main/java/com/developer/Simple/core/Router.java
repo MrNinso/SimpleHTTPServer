@@ -13,6 +13,10 @@ public class Router implements Server.OnResquest {
         Routes = routes;
     }
 
+    public Router(Builder b) {
+        Routes = b.build(new TreeMap<>());
+    }
+
     @Override
     public ServerResponse request(ClientRequest clientRequest) {
         String s;
@@ -31,5 +35,9 @@ public class Router implements Server.OnResquest {
 
     public TreeMap<String, Server.OnResquest> getRoutes() {
         return Routes;
+    }
+
+    public interface Builder {
+        TreeMap<String, Server.OnResquest> build(TreeMap<String, Server.OnResquest> routes);
     }
 }
