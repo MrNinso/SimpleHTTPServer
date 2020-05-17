@@ -1,12 +1,12 @@
 plugins {
-    id 'groovy'
     id 'java'
+    id 'maven'
 }
 
 repositories {
     mavenCentral()
 }
-
+group = "com.github.MrNinso"
 java {
     sourceCompatibility = JavaVersion.VERSION_11
     sourceCompatibility = JavaVersion.VERSION_13
@@ -16,4 +16,12 @@ dependencies {
 
     implementation 'commons-io:commons-io:2.6'
     testImplementation 'junit:junit:4.12'
+}
+
+task sourcesJar(type: Jar, dependsOn: classes) {
+    from sourceSets.main.allSource
+}
+
+artifacts {
+    archives sourcesJar
 }
