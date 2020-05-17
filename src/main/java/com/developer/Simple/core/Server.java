@@ -43,6 +43,6 @@ public abstract class Server {
     public abstract void stop() throws Exception;
 
     public interface OnResquest {
-        Response request(Request request);
+        ServerResponse request(ClientRequest clientRequest);
     }
 }

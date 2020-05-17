@@ -1,14 +1,14 @@
 package com.developer.Simple.HTTP;
 
-import com.developer.Simple.core.Response;
+
+import com.developer.Simple.core.ServerResponse;
+import okhttp3.*;
+import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -16,15 +16,15 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class HTTPServerTest {
     static HTTPServer server;
-    static HttpClient client;
+    static OkHttpClient client;
 
     @BeforeClass
     public static void setup() throws Exception {
         server = new HTTPServer(8000, request ->
-                new Response(200, "Okay".getBytes())
+                new ServerResponse(200, "Okay".getBytes())
         );
 
-        client = HttpClient.newHttpClient();
+        client = new OkHttpClient();
         try {
             server.start();
         } catch (Exception e) {
@@ -36,15 +36,17 @@ public class HTTPServerTest {
     @Test
     public void connTest() {
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://localhost:8000"))
+            Request request = new Request.Builder()
+                .url("http://localhost:8000")
                 .build();
 
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+            Response response = client.newCall(request).execute();
 
-            Assert.assertEquals(200, response.statusCode());
-            Assert.assertEquals("Okay", response.body());
+            Assert.assertEquals(200, response.code());
+            Assert.assertNotNull(response.body());
+            Assert.assertEquals("Okay", response.body().string());
+
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail(e.getMessage());
@@ -53,37 +55,42 @@ public class HTTPServerTest {
 
     @Test
     public void stressTest() {
-        List<HttpRequest> requests = new ArrayList<>();
+        List<Request> requests = new ArrayList<>();
 
-        AtomicInteger count = new AtomicInteger(1000);
+        AtomicInteger count = new AtomicInteger(14146);
 
         for (int i = 0; i < count.get(); i++) {
-            requests.add(HttpRequest.newBuilder()
-                    .uri(URI.create("http://127.0.0.1:8000"))
-                    .build()
+            requests.add(new Request.Builder()
+                .url("http://localhost:8000")
+                .build()
             );
         }
 
         Date init = new Date();
         System.out.println(init);
         requests.forEach(httpRequest ->
-            client.sendAsync(httpRequest, HttpResponse.BodyHandlers.ofString())
-                .thenApply(HttpResponse::body)
-                .thenApply(s -> {
-                   Assert.assertEquals("Okay", s);
-                   int i = count.decrementAndGet();
-
-                   if (i == 0) {
-                       Date end = new Date();
-                       System.out.println(end);
-                   }
-                   return s;
+            client.newCall(httpRequest).enqueue(new Callback() {
+                @Override
+                public void onFailure(@NotNull Call call, @NotNull IOException e) {
+                    Assert.fail(e.getMessage());
                 }
-            )
-        );
+
+                @Override
+                public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
+                    Assert.assertNotNull(response.body());
+                    Assert.assertEquals("Okay", response.body().string());
+                    int i = count.decrementAndGet();
+
+                    if (i == 0) {
+                        Date end = new Date();
+                        System.out.println(end);
+                    }
+                }
+            }
+        ));
 
         try {
-            Thread.sleep(10000);
+            Thread.sleep(141460);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

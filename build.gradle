@@ -3,17 +3,22 @@ apply plugin: 'maven'
 
 group = 'com.github.MrNinso'
 
-sourceCompatibility = 11
-targetCompatibility = 11
-
 repositories {
   mavenCentral()
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 dependencies {
     implementation 'com.google.guava:guava:18.0'
     implementation 'commons-io:commons-io:2.6'
+    implementation 'org.apache.commons:commons-lang3:3.10'
 
+
+    testImplementation 'com.squareup.okhttp3:okhttp:4.6.0'
     testImplementation 'junit:junit:4.13'
 
 }

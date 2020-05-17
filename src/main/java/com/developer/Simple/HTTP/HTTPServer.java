@@ -1,7 +1,7 @@
 package com.developer.Simple.HTTP;
 
-import com.developer.Simple.core.Request;
-import com.developer.Simple.core.Response;
+import com.developer.Simple.core.ClientRequest;
+import com.developer.Simple.core.ServerResponse;
 import com.developer.Simple.core.Server;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
@@ -10,7 +10,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.util.Objects;
 
 public class HTTPServer extends Server {
 
@@ -28,9 +27,9 @@ public class HTTPServer extends Server {
     protected void setup() throws Exception {
         httpServer = HttpServer.create(new InetSocketAddress(getBind(), getPort()), 0);
         httpServer.createContext("/", exchange -> {
-            Response r = getRequestHandler().request(Request.HttpExchangeToRequest(exchange));
+            ServerResponse r = getRequestHandler().request(new ClientRequest(exchange));
 
-            sendResponse(exchange, Objects.requireNonNullElseGet(r, () -> new Response(500)));
+            sendResponse(exchange, (r == null) ? new ServerResponse(500) : r);
         });
 
     }
@@ -48,14 +47,14 @@ public class HTTPServer extends Server {
         httpServer.stop(0);
     }
 
-    private void sendResponse(HttpExchange exchange, Response response) throws IOException {
-        response.responsHeader.forEach((key, value) ->
-                exchange.getResponseHeaders().add(key, value)
+    private void sendResponse(HttpExchange exchange, ServerResponse serverResponse) throws IOException {
+        serverResponse.responsHeader.forEach((key, value) ->
+                exchange.getResponseHeaders().set(key, value)
         );
 
-        exchange.sendResponseHeaders(response.HttpCode, response.responseBody.length);
+        exchange.sendResponseHeaders(serverResponse.HttpCode, serverResponse.responseBody.length);
         OutputStream os = exchange.getResponseBody();
-        os.write(response.responseBody);
+        os.write(serverResponse.responseBody);
 
         os.close();
     }

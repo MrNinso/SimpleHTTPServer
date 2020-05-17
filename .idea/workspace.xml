@@ -1,27 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df492547-bdd7-4cf8-8b22-9ea571bc287e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="df492547-bdd7-4cf8-8b22-9ea571bc287e" name="Default Changelist" comment="fix">
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/css/base-style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/css/style.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/reports/tests/test/js/report.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/resources/main/META-INF/plugin.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/developer/Simple/HTTP/HTTPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/HTTP/HTTPServer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Request.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/ClientRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Response.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/ServerResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Router.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Router.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Server.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Server.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/developer/Simple/HTTP/HTTPServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/developer/Simple/HTTP/HTTPServerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/developer/Simple/core/RouterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/developer/Simple/core/RouterTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -91,7 +83,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Gradle.HTTPServerTest">
+  <component name="RunManager" selected="Gradle.RouterTest.routerLogin">
     <configuration name="HTTPServerTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -111,12 +103,12 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="HTTPServerTest.connTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="HTTPServerTest.stressTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;com.developer.Simple.HTTP.HTTPServerTest.connTest&quot;" />
+        <option name="scriptParameters" value="--tests &quot;com.developer.Simple.HTTP.HTTPServerTest.stressTest&quot;" />
         <option name="taskDescriptions">
           <list />
         </option>
@@ -149,25 +141,6 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
-    <configuration name="RouterTest.router" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
-      <ExternalSystemSettings>
-        <option name="executionName" />
-        <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;com.developer.Simple.core.RouterTest.router&quot;" />
-        <option name="taskDescriptions">
-          <list />
-        </option>
-        <option name="taskNames">
-          <list>
-            <option value=":test" />
-          </list>
-        </option>
-        <option name="vmOptions" />
-      </ExternalSystemSettings>
-      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
-      <method v="2" />
-    </configuration>
     <configuration name="RouterTest.routerLogin" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -187,13 +160,32 @@
       <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
       <method v="2" />
     </configuration>
+    <configuration name="RouterTest.routerToLowerCase" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="--tests &quot;com.developer.Simple.core.RouterTest.routerToLowerCase&quot;" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":test" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <GradleScriptDebugEnabled>false</GradleScriptDebugEnabled>
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.HTTPServerTest" />
-        <item itemvalue="Gradle.RouterTest" />
         <item itemvalue="Gradle.RouterTest.routerLogin" />
-        <item itemvalue="Gradle.RouterTest.router" />
-        <item itemvalue="Gradle.HTTPServerTest.connTest" />
+        <item itemvalue="Gradle.RouterTest" />
+        <item itemvalue="Gradle.RouterTest.routerToLowerCase" />
+        <item itemvalue="Gradle.HTTPServerTest.stressTest" />
+        <item itemvalue="Gradle.HTTPServerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -243,7 +235,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589686933532</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="fix">
+      <created>1589688897263</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1589688897263</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -252,66 +251,74 @@
     <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="3306" y="227" width="374" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1589684712380">
+    <state x="2020" y="100" width="1720" height="880" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1589700144533">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="3306" y="227" width="374" height="577" key="#com.intellij.ide.util.MemberChooser/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589684712380" />
+    <state x="2020" y="100" width="1720" height="880" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589700144533" />
+    <state x="3306" y="227" width="374" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1589695047893">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="3306" y="227" width="374" height="577" key="#com.intellij.ide.util.MemberChooser/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589695047893" />
     <state x="2603" y="326" width="525" height="409" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1589688050855">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2603" y="326" width="525" height="409" key="#com.intellij.ide.util.TreeClassChooserDialog/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589688050855" />
+    <state x="2318" y="0" width="1113" height="1074" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1589693056437">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2318" y="0" width="1113" height="1074" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589693056437" />
     <state x="2613" y="289" width="524" height="495" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1589680965293">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2613" y="289" width="524" height="495" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589680965293" />
-    <state x="2390" y="97" width="970" height="880" key="CommitChangelistDialog2" timestamp="1589686933459">
+    <state x="2390" y="97" width="970" height="880" key="CommitChangelistDialog2" timestamp="1589723608154">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2390" y="97" width="970" height="880" key="CommitChangelistDialog2/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589686933459" />
+    <state x="2390" y="97" width="970" height="880" key="CommitChangelistDialog2/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589723608154" />
     <state x="2663" y="298" width="424" height="478" key="FileChooserDialogImpl" timestamp="1589688570131">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2663" y="298" width="424" height="478" key="FileChooserDialogImpl/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589688570131" />
-    <state width="1878" height="358" key="GridCell.Tab.0.bottom" timestamp="1589685361059">
+    <state width="1878" height="334" key="GridCell.Tab.0.bottom" timestamp="1589723366919">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="358" key="GridCell.Tab.0.bottom/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685361059" />
-    <state width="1878" height="358" key="GridCell.Tab.0.center" timestamp="1589685361059">
+    <state width="1878" height="334" key="GridCell.Tab.0.bottom/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589723366919" />
+    <state width="1878" height="334" key="GridCell.Tab.0.center" timestamp="1589723366919">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="358" key="GridCell.Tab.0.center/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685361059" />
-    <state width="1878" height="358" key="GridCell.Tab.0.left" timestamp="1589685361059">
+    <state width="1878" height="334" key="GridCell.Tab.0.center/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589723366919" />
+    <state width="1878" height="334" key="GridCell.Tab.0.left" timestamp="1589723366919">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="358" key="GridCell.Tab.0.left/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685361059" />
-    <state width="1878" height="358" key="GridCell.Tab.0.right" timestamp="1589685361059">
+    <state width="1878" height="334" key="GridCell.Tab.0.left/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589723366919" />
+    <state width="1878" height="334" key="GridCell.Tab.0.right" timestamp="1589723366919">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="358" key="GridCell.Tab.0.right/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685361059" />
-    <state width="1878" height="358" key="GridCell.Tab.1.bottom" timestamp="1589685361059">
+    <state width="1878" height="334" key="GridCell.Tab.0.right/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589723366919" />
+    <state width="1878" height="343" key="GridCell.Tab.1.bottom" timestamp="1589722714108">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="358" key="GridCell.Tab.1.bottom/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685361059" />
-    <state width="1878" height="358" key="GridCell.Tab.1.center" timestamp="1589685361059">
+    <state width="1878" height="343" key="GridCell.Tab.1.bottom/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589722714108" />
+    <state width="1878" height="343" key="GridCell.Tab.1.center" timestamp="1589722714108">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="358" key="GridCell.Tab.1.center/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685361059" />
-    <state width="1878" height="358" key="GridCell.Tab.1.left" timestamp="1589685361059">
+    <state width="1878" height="343" key="GridCell.Tab.1.center/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589722714108" />
+    <state width="1878" height="343" key="GridCell.Tab.1.left" timestamp="1589722714108">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="358" key="GridCell.Tab.1.left/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685361059" />
-    <state width="1878" height="358" key="GridCell.Tab.1.right" timestamp="1589685361059">
+    <state width="1878" height="343" key="GridCell.Tab.1.left/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589722714108" />
+    <state width="1878" height="343" key="GridCell.Tab.1.right" timestamp="1589722714108">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state width="1878" height="358" key="GridCell.Tab.1.right/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685361059" />
-    <state x="2363" y="117" width="1024" height="839" key="SettingsEditor" timestamp="1589688563185">
+    <state width="1878" height="343" key="GridCell.Tab.1.right/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589722714108" />
+    <state x="2363" y="117" width="1024" height="839" key="SettingsEditor" timestamp="1589689357360">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2363" y="117" width="1024" height="839" key="SettingsEditor/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589688563185" />
-    <state x="2475" y="276" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1589687039150">
+    <state x="2363" y="117" width="1024" height="839" key="SettingsEditor/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589689357360" />
+    <state x="2475" y="276" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1589688903821">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2475" y="276" width="800" height="522" key="Vcs.Push.Dialog.v2/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589687039150" />
+    <state x="2475" y="276" width="800" height="522" key="Vcs.Push.Dialog.v2/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589688903821" />
     <state x="2553" y="435" width="644" height="204" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1589674761227">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -328,13 +335,16 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
+        <line-breakpoint enabled="true" type="java-line">
+          <condition expression="s.equals(&quot;secret&quot;)" language="JAVA" />
           <url>file://$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Router.java</url>
-          <line>14</line>
-          <properties class="com.developer.Simple.core.Router" method="request">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="6" />
+          <line>26</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/com/developer/Simple/HTTP/HTTPServer.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

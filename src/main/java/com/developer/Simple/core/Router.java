@@ -1,5 +1,7 @@
 package com.developer.Simple.core;
 
+import org.apache.commons.lang3.ArrayUtils;
+
 import java.util.Arrays;
 import java.util.TreeMap;
 
@@ -12,23 +14,19 @@ public class Router implements Server.OnResquest {
     }
 
     @Override
-    public Response request(Request request) {
+    public ServerResponse request(ClientRequest clientRequest) {
         String s;
 
-        if (request.URI.length >= 1) {
-            s = request.URI[0];
-            request.URI = Arrays.copyOfRange(
-                    request.URI,
-                    1,
-                    request.URI.length
-            );
+        if (clientRequest.URI.length >= 1) {
+            s = clientRequest.URI[0];
+            clientRequest.URI = ArrayUtils.remove(clientRequest.URI, 0);
         } else {
             s = "index";
         }
 
         Server.OnResquest r = getRoutes().get(s);
 
-        return r != null ? r.request(request) : new Response(404);
+        return r != null ? r.request(clientRequest) : new ServerResponse(404);
     }
 
     public TreeMap<String, Server.OnResquest> getRoutes() {

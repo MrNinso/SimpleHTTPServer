@@ -1,26 +1,26 @@
 package com.developer.Simple.core;
 
 import com.developer.Simple.HTTP.HTTPServer;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
+import okhttp3.Response;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import java.net.URI;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.TreeMap;
 
 public class RouterTest {
     static HTTPServer server;
-    static HttpClient client;
+    static OkHttpClient client;
 
     @BeforeClass
     public static void setup() throws Exception {
         TreeMap<String, Server.OnResquest> routes = new TreeMap<>();
 
         routes.put("echo", request ->
-                new Response(200, request.body.getBytes())
+                new ServerResponse(200, request.body.getBytes())
         );
 
         routes.put("invert", request -> {
@@ -30,11 +30,11 @@ public class RouterTest {
                 inverted.append(request.body.charAt(i));
             }
 
-            return new Response(200, inverted.toString().getBytes());
+            return new ServerResponse(200, inverted.toString().getBytes());
         });
 
         routes.put("toLowerCase", request ->
-                new Response(200, request.body.toLowerCase().getBytes())
+                new ServerResponse(200, request.body.toLowerCase().getBytes())
         );
 
         routes.put("Login", request -> {
@@ -42,23 +42,23 @@ public class RouterTest {
                 TreeMap<String, Server.OnResquest> rs = new TreeMap<>();
 
                 rs.put("index", request1 ->
-                   new Response(200, "this is my super private index".getBytes())
+                   new ServerResponse(200, "this is my super private index".getBytes())
                 );
 
                 rs.put("secret", request1 ->
-                    new Response(200, "this is a secret".getBytes())
+                    new ServerResponse(200, "this is a secret".getBytes())
                 );
 
                 Router router = new Router(rs);
 
                 return router.request(request);
             }
-            return new Response(401);
+            return new ServerResponse(401);
         });
 
         server = new HTTPServer(8001, new Router(routes));
 
-        client = HttpClient.newHttpClient();
+        client = new OkHttpClient();
         try {
             server.start();
         } catch (Exception e) {
@@ -70,16 +70,17 @@ public class RouterTest {
     @Test
     public void routeEcho() {
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8001/echo"))
-                    .POST(HttpRequest.BodyPublishers.ofString("Hi"))
+            Request request = new Request.Builder()
+                    .url("http://localhost:8001/echo")
+                    .post(RequestBody.create("Hi".getBytes()))
                     .build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            Assert.assertEquals(200, response.statusCode());
-            Assert.assertEquals("Hi", response.body());
+            Response response = client.newCall(request).execute();
 
+            Assert.assertEquals(200, response.code());
+            Assert.assertNotNull(response.body());
+            Assert.assertEquals("Hi", response.body().string());
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();
@@ -89,16 +90,17 @@ public class RouterTest {
     @Test
     public void routerInvert() {
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8001/invert"))
-                    .POST(HttpRequest.BodyPublishers.ofString("Hi"))
+            Request request = new Request.Builder()
+                    .url("http://localhost:8001/invert")
+                    .post(RequestBody.create("Hi".getBytes()))
                     .build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            Assert.assertEquals(200, response.statusCode());
-            Assert.assertEquals("iH", response.body());
+            Response response = client.newCall(request).execute();
 
+            Assert.assertEquals(200, response.code());
+            Assert.assertNotNull(response.body());
+            Assert.assertEquals("iH", response.body().string());
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();
@@ -108,16 +110,17 @@ public class RouterTest {
     @Test
     public void routerToLowerCase() {
         try {
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8001/toLowerCase"))
-                    .POST(HttpRequest.BodyPublishers.ofString("Hi"))
+            Request request = new Request.Builder()
+                    .url("http://localhost:8001/toLowerCase")
+                    .post(RequestBody.create("Hi".getBytes()))
                     .build();
 
-            HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 
-            Assert.assertEquals(200, response.statusCode());
-            Assert.assertEquals("hi", response.body());
+            Response response = client.newCall(request).execute();
 
+            Assert.assertEquals(200, response.code());
+            Assert.assertNotNull(response.body());
+            Assert.assertEquals("hi", response.body().string());
         } catch (Exception e) {
             e.printStackTrace();
             Assert.fail();
@@ -127,34 +130,37 @@ public class RouterTest {
     @Test
     public void routerLogin() {
         try {
-            HttpRequest requestFail = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8001/Login"))
+            Request requestFail = new Request.Builder()
+                    .url("http://localhost:8001/Login")
                     .build();
 
-            HttpResponse<String> responseFail = client.send(requestFail, HttpResponse.BodyHandlers.ofString());
 
-            Assert.assertEquals(401, responseFail.statusCode());
+            Response responseFail = client.newCall(requestFail).execute();
 
-            HttpRequest requestSuccess = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8001/Login"))
-                    .POST(HttpRequest.BodyPublishers.ofString("Sup3rP#ssw0rd!@"))
+            Assert.assertEquals(401, responseFail.code());
+
+            Request requestSuccess = new Request.Builder()
+                    .url("http://localhost:8001/Login")
+                    .post(RequestBody.create("Sup3rP#ssw0rd!@".getBytes()))
                     .build();
 
-            HttpResponse<String> responseSuccess = client.send(requestSuccess, HttpResponse.BodyHandlers.ofString());
 
-            Assert.assertEquals(200, responseSuccess.statusCode());
-            Assert.assertEquals("this is my super private index", responseSuccess.body());
+            Response responseSuccess = client.newCall(requestSuccess).execute();
 
+            Assert.assertEquals(200, responseSuccess.code());
+            Assert.assertNotNull(responseSuccess.body());
+            Assert.assertEquals("this is my super private index", responseSuccess.body().string());
 
-            HttpRequest requestSuccessSecret = HttpRequest.newBuilder()
-                    .uri(URI.create("http://localhost:8001/Login/secret"))
-                    .POST(HttpRequest.BodyPublishers.ofString("Sup3rP#ssw0rd!@"))
+            Request requestSecret = new Request.Builder()
+                    .url("http://localhost:8001/Login/secret")
+                    .post(RequestBody.create("Sup3rP#ssw0rd!@".getBytes()))
                     .build();
 
-            HttpResponse<String> responseSuccessSecret = client.send(requestSuccessSecret, HttpResponse.BodyHandlers.ofString());
+            Response responseSecret = client.newCall(requestSecret).execute();
 
-            Assert.assertEquals(200, responseSuccessSecret.statusCode());
-            Assert.assertEquals("this is a secret", responseSuccessSecret.body());
+            Assert.assertEquals(200, responseSecret.code());
+            Assert.assertNotNull(responseSecret.body());
+            Assert.assertEquals("this is a secret", responseSecret.body().string());
 
         } catch (Exception e) {
             e.printStackTrace();
