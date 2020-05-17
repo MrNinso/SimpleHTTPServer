@@ -1,40 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df492547-bdd7-4cf8-8b22-9ea571bc287e" name="Default Changelist" comment="init">
-      <change afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileChanges/last-build.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/6.1.1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.gradle/vcs-1/gc.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/css/base-style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/css/style.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/index.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/reports/tests/test/js/report.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/resources/main/META-INF/plugin.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/test-results/test/binary/output.bin.idx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/build/test-results/test/binary/results.bin" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/settings.gradle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/HTTP/HTTPServer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Request.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Response.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Router.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Server.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/developer/Simple/HTTP/HTTPServerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/developer/Simple/core/RouterTest.java" afterDir="false" />
+    <list default="true" id="df492547-bdd7-4cf8-8b22-9ea571bc287e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -227,12 +195,27 @@
       <option name="project" value="LOCAL" />
       <updated>1589685515335</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="init">
+      <created>1589685797016</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1589685797016</updated>
+    </task>
+    <task id="LOCAL-00003" summary="fix">
+      <created>1589685834722</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1589685834722</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
-    <option name="LAST_COMMIT_MESSAGE" value="init" />
+    <MESSAGE value="fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix" />
   </component>
   <component name="WindowStateProjectService">
     <state x="3306" y="227" width="374" height="577" key="#com.intellij.ide.util.MemberChooser" timestamp="1589684712380">
@@ -243,10 +226,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2613" y="289" width="524" height="495" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589680965293" />
-    <state x="2390" y="97" width="970" height="880" key="CommitChangelistDialog2" timestamp="1589685621044">
+    <state x="2390" y="97" width="970" height="880" key="CommitChangelistDialog2" timestamp="1589685834649">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2390" y="97" width="970" height="880" key="CommitChangelistDialog2/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685621044" />
+    <state x="2390" y="97" width="970" height="880" key="CommitChangelistDialog2/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685834649" />
     <state width="1878" height="358" key="GridCell.Tab.0.bottom" timestamp="1589685361059">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
@@ -283,10 +266,10 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2363" y="117" width="1024" height="839" key="SettingsEditor/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589681501031" />
-    <state x="2475" y="276" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1589685527669">
+    <state x="2475" y="276" width="800" height="522" key="Vcs.Push.Dialog.v2" timestamp="1589685877691">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2475" y="276" width="800" height="522" key="Vcs.Push.Dialog.v2/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685527669" />
+    <state x="2475" y="276" width="800" height="522" key="Vcs.Push.Dialog.v2/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589685877691" />
     <state x="2553" y="435" width="644" height="204" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1589674761227">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
