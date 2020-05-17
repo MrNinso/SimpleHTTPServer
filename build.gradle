@@ -1,7 +1,7 @@
 apply plugin: 'java-library'
 apply plugin: 'maven'
 
-group = 'com.github.MrNinso'
+group = 'com.developer.Simple'
 
 repositories {
   mavenCentral()
@@ -22,14 +22,14 @@ dependencies {
 
 }
 
-task sourcesJar(type: Jar, dependsOn: classes) {
+/*task sourcesJar(type: Jar, dependsOn: classes) {
     from sourceSets.main.allSource
 }
 
 artifacts {
     archives sourcesJar
 }
-
+*/
 wrapper {
     gradleVersion = "6.0"
     distributionType = Wrapper.DistributionType.ALL
