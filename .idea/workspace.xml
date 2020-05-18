@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df492547-bdd7-4cf8-8b22-9ea571bc287e" name="Default Changelist" comment="HTTPSServerTest">
-      <change afterPath="$PROJECT_DIR$/src/test/java/com/developer/Simple/OkHttp.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/developer/Simple/HTTP/HTTPServer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/HTTP/HTTPServer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Router.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/developer/Simple/core/Router.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/developer/Simple/HTTP/HTTPServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/developer/Simple/HTTP/HTTPServerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/developer/Simple/HTTPS/HTTPSServerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/developer/Simple/HTTPS/HTTPSServerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/com/developer/Simple/core/RouterTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/developer/Simple/core/RouterTest.java" afterDir="false" />
-    </list>
+    <list default="true" id="df492547-bdd7-4cf8-8b22-9ea571bc287e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -138,6 +129,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.39310345" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
     <property name="show.unlinked.gradle.project.popup" value="true" />
@@ -344,14 +336,29 @@
       <option name="project" value="LOCAL" />
       <updated>1589728194070</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="HTTPSServerTest">
+      <created>1589842664454</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1589842664454</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Code clean">
+      <created>1589842713941</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1589842713941</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init" />
     <MESSAGE value="fix" />
     <MESSAGE value="HTTPSServerTest" />
-    <option name="LAST_COMMIT_MESSAGE" value="HTTPSServerTest" />
+    <MESSAGE value="Code clean" />
+    <option name="LAST_COMMIT_MESSAGE" value="Code clean" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2020" y="100" width="1720" height="880" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1589741315537">
@@ -378,10 +385,14 @@
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
     <state x="2613" y="289" width="524" height="495" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589680965293" />
-    <state x="2390" y="97" width="1368" height="982" key="CommitChangelistDialog2" timestamp="1589842366606">
+    <state x="2527" y="374" width="696" height="326" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1" timestamp="1589842492547">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
-    <state x="2390" y="97" width="1368" height="982" key="CommitChangelistDialog2/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589842366606" />
+    <state x="2527" y="374" width="696" height="326" key="ANALYSIS_DLG_com.intellij.analysis.BaseAnalysisAction$1/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589842492547" />
+    <state x="2390" y="97" width="1368" height="982" key="CommitChangelistDialog2" timestamp="1589842713857">
+      <screen x="1920" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2390" y="97" width="1368" height="982" key="CommitChangelistDialog2/0.167.1920.1053/1920.0.1920.1080@1920.0.1920.1080" timestamp="1589842713857" />
     <state x="2663" y="298" width="424" height="478" key="FileChooserDialogImpl" timestamp="1589842003439">
       <screen x="1920" y="0" width="1920" height="1080" />
     </state>
