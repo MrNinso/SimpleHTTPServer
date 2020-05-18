@@ -3,11 +3,8 @@ package com.developer.Simple.HTTP;
 import com.developer.Simple.core.ClientRequest;
 import com.developer.Simple.core.ServerResponse;
 import com.developer.Simple.core.Server;
-import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpServer;
 
-import java.io.IOException;
-import java.io.OutputStream;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 

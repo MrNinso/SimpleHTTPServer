@@ -37,7 +37,6 @@ public class HTTPServerTest {
         }
     }
 
-    @SuppressWarnings("ConstantConditions")
     @Test
     public void connTest() {
         try {
@@ -80,7 +79,6 @@ public class HTTPServerTest {
                     Assert.fail(e.getMessage());
                 }
 
-                @SuppressWarnings("ConstantConditions")
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     Assert.assertNotNull(response.body());
@@ -96,7 +94,7 @@ public class HTTPServerTest {
         ));
 
         try {
-            Thread.sleep(141460);
+            Thread.sleep(20000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
