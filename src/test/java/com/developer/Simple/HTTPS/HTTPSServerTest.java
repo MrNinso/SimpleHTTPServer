@@ -1,9 +1,7 @@
 package com.developer.Simple.HTTPS;
 
+import com.developer.Simple.OkHttp;
 import com.developer.Simple.core.ServerResponse;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import okhttp3.Response;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -12,7 +10,6 @@ import org.junit.Test;
 import javax.net.ssl.KeyManagerFactory;
 import javax.net.ssl.SSLContext;
 import javax.net.ssl.TrustManagerFactory;
-import javax.net.ssl.X509TrustManager;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,8 +20,7 @@ import java.security.KeyStore;
 
 public class HTTPSServerTest {
 
-    private static HTTPSServer httpsServer;
-    static OkHttpClient client;
+    static OkHttp client;
 
     private static final int PORT = 8855;
     private static final String URL = "https://localhost:8855";
@@ -60,20 +56,11 @@ public class HTTPSServerTest {
             // Set up the HTTPS context and parameters
             sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
 
-            httpsServer = new HTTPSServer(PORT, sslContext, clientRequest ->
+            HTTPSServer httpsServer = new HTTPSServer(PORT, sslContext, clientRequest ->
                     new ServerResponse(200, clientRequest.body.getBytes())
             );
 
-            int index = -1;
-
-            for (int i = 0; i < tmf.getTrustManagers().length; i++) {
-                if (tmf.getTrustManagers()[i] instanceof X509TrustManager) {
-                    index = i;
-                    break;
-                }
-            }
-
-            client = client = new OkHttpClient();
+            client = new OkHttp(true);
 
             httpsServer.setup();
             httpsServer.start();
@@ -87,13 +74,7 @@ public class HTTPSServerTest {
     @Test
     public void simpleRequest() {
         try {
-            Request request = new Request.Builder()
-                    .url(URL)
-                    .post(RequestBody.create("Hi".getBytes()))
-                    .build();
-
-
-            Response response = client.newCall(request).execute();
+            Response response = client.syncRequest(URL, "Hi");
 
             Assert.assertEquals(200, response.code());
             Assert.assertNotNull(response.body());
