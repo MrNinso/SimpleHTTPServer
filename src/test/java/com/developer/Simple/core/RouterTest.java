@@ -9,13 +9,16 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+@SuppressWarnings("ConstantConditions")
 public class RouterTest {
     static HTTPServer server;
     static OkHttpClient client;
 
+    private static final int PORT = 8891;
+    private static final String URL = "http://localhost:8891/%s";
+
     @BeforeClass
     public static void setup() throws Exception {
-
         Router router = new Router(routes -> {
             routes.put("echo", request ->
                     new ServerResponse(200, request.body.getBytes())
@@ -53,10 +56,11 @@ public class RouterTest {
             return routes;
         });
 
-        server = new HTTPServer(8001, router);
+        server = new HTTPServer(PORT, router);
 
         client = new OkHttpClient();
         try {
+            server.setup();
             server.start();
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,7 +72,7 @@ public class RouterTest {
     public void routeEcho() {
         try {
             Request request = new Request.Builder()
-                    .url("http://localhost:8001/echo")
+                    .url(String.format(URL, "echo"))
                     .post(RequestBody.create("Hi".getBytes()))
                     .build();
 
@@ -88,7 +92,7 @@ public class RouterTest {
     public void routerInvert() {
         try {
             Request request = new Request.Builder()
-                    .url("http://localhost:8001/invert")
+                    .url(String.format(URL, "invert"))
                     .post(RequestBody.create("Hi".getBytes()))
                     .build();
 
@@ -108,7 +112,7 @@ public class RouterTest {
     public void routerToLowerCase() {
         try {
             Request request = new Request.Builder()
-                    .url("http://localhost:8001/toLowerCase")
+                    .url(String.format(URL, "toLowerCase"))
                     .post(RequestBody.create("Hi".getBytes()))
                     .build();
 
@@ -128,7 +132,7 @@ public class RouterTest {
     public void routerLogin() {
         try {
             Request requestFail = new Request.Builder()
-                    .url("http://localhost:8001/Login")
+                    .url(String.format(URL, "Login"))
                     .build();
 
 
@@ -137,7 +141,7 @@ public class RouterTest {
             Assert.assertEquals(401, responseFail.code());
 
             Request requestSuccess = new Request.Builder()
-                    .url("http://localhost:8001/Login")
+                    .url(String.format(URL, "Login"))
                     .post(RequestBody.create("Sup3rP#ssw0rd!@".getBytes()))
                     .build();
 
@@ -149,7 +153,7 @@ public class RouterTest {
             Assert.assertEquals("this is my super private index", responseSuccess.body().string());
 
             Request requestSecret = new Request.Builder()
-                    .url("http://localhost:8001/Login/secret")
+                    .url(String.format(URL, "Login/secret"))
                     .post(RequestBody.create("Sup3rP#ssw0rd!@".getBytes()))
                     .build();
 

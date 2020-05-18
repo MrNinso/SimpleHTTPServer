@@ -18,14 +18,18 @@ public class HTTPServerTest {
     static HTTPServer server;
     static OkHttpClient client;
 
+    private static final int PORT = 9188;
+    private static final String URL = "http://localhost:9188";
+
     @BeforeClass
     public static void setup() throws Exception {
-        server = new HTTPServer(8000, request ->
+        server = new HTTPServer(PORT, request ->
                 new ServerResponse(200, "Okay".getBytes())
         );
 
         client = new OkHttpClient();
         try {
+            server.setup();
             server.start();
         } catch (Exception e) {
             e.printStackTrace();
@@ -33,11 +37,12 @@ public class HTTPServerTest {
         }
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Test
     public void connTest() {
         try {
             Request request = new Request.Builder()
-                .url("http://localhost:8000")
+                .url(URL)
                 .build();
 
 
@@ -61,7 +66,7 @@ public class HTTPServerTest {
 
         for (int i = 0; i < count.get(); i++) {
             requests.add(new Request.Builder()
-                .url("http://localhost:8000")
+                .url(URL)
                 .build()
             );
         }
@@ -75,6 +80,7 @@ public class HTTPServerTest {
                     Assert.fail(e.getMessage());
                 }
 
+                @SuppressWarnings("ConstantConditions")
                 @Override
                 public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                     Assert.assertNotNull(response.body());
