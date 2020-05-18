@@ -1,5 +1,9 @@
 package com.developer.Simple.core;
 
+import com.sun.net.httpserver.HttpExchange;
+
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.InetAddress;
 
 public abstract class Server {
@@ -8,20 +12,15 @@ public abstract class Server {
     private final int Port;
     private final OnResquest RequestHandler;
 
-    public Server(int port, OnResquest requestHandler) throws Exception {
+    public Server(int port, OnResquest requestHandler) {
         this.Port = port;
         this.RequestHandler = requestHandler;
-
-        setup();
     }
 
-    public Server(InetAddress bind, int port, OnResquest requestHandler) throws Exception {
+    public Server(InetAddress bind, int port, OnResquest requestHandler) {
         this.Bind = bind;
         this.Port = port;
         this.RequestHandler = requestHandler;
-
-
-        setup();
     }
 
     public InetAddress getBind() {
@@ -36,7 +35,19 @@ public abstract class Server {
         return RequestHandler;
     }
 
-    protected abstract void setup() throws Exception;
+    protected void sendResponse(HttpExchange exchange, ServerResponse serverResponse) throws IOException {
+        serverResponse.responsHeader.forEach((key, value) ->
+                exchange.getResponseHeaders().set(key, value)
+        );
+
+        exchange.sendResponseHeaders(serverResponse.HttpCode, serverResponse.responseBody.length);
+        OutputStream os = exchange.getResponseBody();
+        os.write(serverResponse.responseBody);
+
+        os.close();
+    }
+
+    public abstract void setup() throws Exception;
 
     public abstract void start() throws Exception;
 

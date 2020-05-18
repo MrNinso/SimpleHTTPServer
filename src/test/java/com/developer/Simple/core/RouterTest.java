@@ -1,9 +1,7 @@
 package com.developer.Simple.core;
 
 import com.developer.Simple.HTTP.HTTPServer;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
+import com.developer.Simple.OkHttp;
 import okhttp3.Response;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -11,11 +9,13 @@ import org.junit.Test;
 
 public class RouterTest {
     static HTTPServer server;
-    static OkHttpClient client;
+    static OkHttp client;
+
+    private static final int PORT = 8891;
+    private static final String URL = "http://localhost:8891/%s";
 
     @BeforeClass
     public static void setup() throws Exception {
-
         Router router = new Router(routes -> {
             routes.put("echo", request ->
                     new ServerResponse(200, request.body.getBytes())
@@ -53,10 +53,11 @@ public class RouterTest {
             return routes;
         });
 
-        server = new HTTPServer(8001, router);
+        server = new HTTPServer(PORT, router);
 
-        client = new OkHttpClient();
+        client = new OkHttp(false);
         try {
+            server.setup();
             server.start();
         } catch (Exception e) {
             e.printStackTrace();
@@ -67,13 +68,7 @@ public class RouterTest {
     @Test
     public void routeEcho() {
         try {
-            Request request = new Request.Builder()
-                    .url("http://localhost:8001/echo")
-                    .post(RequestBody.create("Hi".getBytes()))
-                    .build();
-
-
-            Response response = client.newCall(request).execute();
+            Response response = client.syncRequest(String.format(URL, "echo"), "Hi");
 
             Assert.assertEquals(200, response.code());
             Assert.assertNotNull(response.body());
@@ -87,13 +82,7 @@ public class RouterTest {
     @Test
     public void routerInvert() {
         try {
-            Request request = new Request.Builder()
-                    .url("http://localhost:8001/invert")
-                    .post(RequestBody.create("Hi".getBytes()))
-                    .build();
-
-
-            Response response = client.newCall(request).execute();
+            Response response = client.syncRequest(String.format(URL, "invert"), "Hi");
 
             Assert.assertEquals(200, response.code());
             Assert.assertNotNull(response.body());
@@ -107,13 +96,7 @@ public class RouterTest {
     @Test
     public void routerToLowerCase() {
         try {
-            Request request = new Request.Builder()
-                    .url("http://localhost:8001/toLowerCase")
-                    .post(RequestBody.create("Hi".getBytes()))
-                    .build();
-
-
-            Response response = client.newCall(request).execute();
+            Response response = client.syncRequest(String.format(URL, "toLowerCase"), "hi");
 
             Assert.assertEquals(200, response.code());
             Assert.assertNotNull(response.body());
@@ -127,33 +110,17 @@ public class RouterTest {
     @Test
     public void routerLogin() {
         try {
-            Request requestFail = new Request.Builder()
-                    .url("http://localhost:8001/Login")
-                    .build();
-
-
-            Response responseFail = client.newCall(requestFail).execute();
+            Response responseFail = client.syncRequest(String.format(URL, "Login"), "");
 
             Assert.assertEquals(401, responseFail.code());
 
-            Request requestSuccess = new Request.Builder()
-                    .url("http://localhost:8001/Login")
-                    .post(RequestBody.create("Sup3rP#ssw0rd!@".getBytes()))
-                    .build();
-
-
-            Response responseSuccess = client.newCall(requestSuccess).execute();
+            Response responseSuccess = client.syncRequest(String.format(URL, "Login"), "Sup3rP#ssw0rd!@");
 
             Assert.assertEquals(200, responseSuccess.code());
             Assert.assertNotNull(responseSuccess.body());
             Assert.assertEquals("this is my super private index", responseSuccess.body().string());
 
-            Request requestSecret = new Request.Builder()
-                    .url("http://localhost:8001/Login/secret")
-                    .post(RequestBody.create("Sup3rP#ssw0rd!@".getBytes()))
-                    .build();
-
-            Response responseSecret = client.newCall(requestSecret).execute();
+            Response responseSecret = client.syncRequest(String.format(URL, "Login/secret"), "Sup3rP#ssw0rd!@");
 
             Assert.assertEquals(200, responseSecret.code());
             Assert.assertNotNull(responseSecret.body());
