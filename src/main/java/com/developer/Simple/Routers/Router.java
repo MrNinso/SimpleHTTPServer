@@ -1,5 +1,8 @@
-package com.developer.Simple.core;
+package com.developer.Simple.Routers;
 
+import com.developer.Simple.core.ClientRequest;
+import com.developer.Simple.core.Server;
+import com.developer.Simple.core.ServerResponse;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.TreeMap;
