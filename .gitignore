@@ -25,7 +25,7 @@ build/*
 hs_err_pid*
 
 #intellij
-.idea/
+.idea/*
 .gradle/6.1.1/executionHistory/
 .gradle/6.1.1/fileContent/
 .gradle/6.1.1/fileHashes/fileHashes.bin
@@ -33,7 +33,5 @@ hs_err_pid*
 .gradle/6.1.1/javaCompile/
 .gradle/6.1.1/vcsMetadata-1/
 .gradle/buildOutputCleanup/outputFiles.bin
-.idea/highlightedFiles.xml
-.idea/jarRepositories.xml
 .gradle/5.1.1/
 .gradle/6.0/
