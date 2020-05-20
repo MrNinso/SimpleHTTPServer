@@ -1,7 +1,9 @@
-package com.developer.Simple.core;
+package com.developer.Simple.Routers;
 
 import com.developer.Simple.HTTP.HTTPServer;
 import com.developer.Simple.OkHttp;
+import com.developer.Simple.core.HTTPCodes;
+import com.developer.Simple.core.ServerResponse;
 import okhttp3.Response;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -18,7 +20,7 @@ public class RouterTest {
     public static void setup() throws Exception {
         Router router = new Router(routes -> {
             routes.put("echo", request ->
-                    new ServerResponse(200, request.body.getBytes())
+                    new ServerResponse(HTTPCodes.OK, request.body.getBytes())
             );
 
             routes.put("invert", request -> {
@@ -28,23 +30,26 @@ public class RouterTest {
                     inverted.append(request.body.charAt(i));
                 }
 
-                return new ServerResponse(200, inverted.toString().getBytes());
+                return new ServerResponse(HTTPCodes.OK, inverted.toString().getBytes());
             });
 
             routes.put("toLowerCase", request ->
-                    new ServerResponse(200, request.body.toLowerCase().getBytes())
+                new ServerResponse(HTTPCodes.OK, request.body.toLowerCase().getBytes())
             );
 
             routes.put("Login", new Router(routes1 -> {
-                routes1.put("index", clientRequest ->
-                        (clientRequest.body.equals("Sup3rP#ssw0rd!@")) ?
-                                new ServerResponse(200, "this is my super private index".getBytes()) :
-                                new ServerResponse(401));
+                routes1.put("index", clientRequest -> (
+                    clientRequest.body.equals("Sup3rP#ssw0rd!@")) ?
+                        new ServerResponse(HTTPCodes.OK, "this is my super private index".getBytes()) :
+                        new ServerResponse(HTTPCodes.UNAUTHORIZED
+                    )
+                );
 
-                routes1.put("secret", clientRequest ->
-                        (clientRequest.body.equals("Sup3rP#ssw0rd!@")) ?
-                                new ServerResponse(200, "this is a secret".getBytes()) :
-                                new ServerResponse(401)
+                routes1.put("secret", clientRequest -> (
+                    clientRequest.body.equals("Sup3rP#ssw0rd!@")) ?
+                        new ServerResponse(HTTPCodes.OK, "this is a secret".getBytes()) :
+                        new ServerResponse(HTTPCodes.UNAUTHORIZED
+                    )
                 );
 
                 return routes1;

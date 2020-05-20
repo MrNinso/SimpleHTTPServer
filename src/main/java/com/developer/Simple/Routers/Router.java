@@ -1,5 +1,9 @@
-package com.developer.Simple.core;
+package com.developer.Simple.Routers;
 
+import com.developer.Simple.core.ClientRequest;
+import com.developer.Simple.core.HTTPCodes;
+import com.developer.Simple.core.Server;
+import com.developer.Simple.core.ServerResponse;
 import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.TreeMap;
@@ -29,7 +33,7 @@ public class Router implements Server.OnResquest {
 
         Server.OnResquest r = getRoutes().get(s);
 
-        return r != null ? r.request(clientRequest) : new ServerResponse(404);
+        return r != null ? r.request(clientRequest) : new ServerResponse(HTTPCodes.NOT_FOUND);
     }
 
     public TreeMap<String, Server.OnResquest> getRoutes() {

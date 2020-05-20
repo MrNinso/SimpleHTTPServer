@@ -1,6 +1,7 @@
 package com.developer.Simple.HTTPS;
 
 import com.developer.Simple.core.ClientRequest;
+import com.developer.Simple.core.HTTPCodes;
 import com.developer.Simple.core.Server;
 import com.developer.Simple.core.ServerResponse;
 import com.sun.net.httpserver.HttpsConfigurator;
@@ -47,7 +48,7 @@ public class HTTPSServer extends Server {
         httpsServer.createContext("/", exchange -> {
             ServerResponse r = getRequestHandler().request(new ClientRequest(exchange));
 
-            sendResponse(exchange, (r == null) ? new ServerResponse(500) : r);
+            sendResponse(exchange, (r == null) ? new ServerResponse(HTTPCodes.INTERNAL_SERVER_ERROR) : r);
         });
     }
 
