@@ -1,0 +1,33 @@
+package com.developer.Simple.core;
+
+public enum HTTPCodes {
+    CONTINUE((short) 100), SWITCHING_PROTOCOLS((short) 101),
+    OK((short) 200), CREATED((short) 201), ACCEPTED((short) 202), NO_CONTENT((short) 204), PARTIAL_CONTENT((short) 206),
+    MULTI_STATUS((short) 207), MULTIPLE_CHOICES((short) 300), MOVED_PERMANENTLY((short) 301), FOUND((short) 302),
+    SEE_OTHER((short) 303), NOT_MODIFIED((short) 304), USE_PROXY((short) 305), TEMPORARY_REDIRECT((short) 307),
+    BAD_REQUEST((short) 400), UNAUTHORIZED((short) 401), PAYMENT_REQUIRED((short) 402), FORBIDDEN((short) 403),
+    NOT_FOUND((short) 404), METHOD_NOT_ALLOWED((short) 405), NOT_ACCEPTABLE((short) 406), REQUEST_TIMEOUT((short) 408),
+    CONFLICT((short) 409), GONE((short) 410), LENGTH_REQUIRED((short) 411), PRECONFITION_FAILED((short) 412),
+    PAYLOAD_TOO_LARGE((short) 413), REQUEST_URI_TOO_LONG((short) 414), UNSUPPORTED_MEDIA_TYPE((short) 415),
+    REQUEST_RANGE_NOT_SATISFIABLE((short) 416), EXPECTATION_FAILED((short) 417), IM_A_TEAPOT((short) 418),
+    ENHANCE_YOUR_CALM((short) 420), MISDIRECTED_REQUEST((short) 421), UNPORCESSABLE_ENTITY((short) 422),
+    LOCKED((short) 423), FAILED_DEPENDENCY((short) 424), UNORDERED_COLLECTION((short) 425),
+    UPGRADE_REQUIRED((short) 426), TOO_MANY_REQUESTS((short) 429), REQUEST_HEADER_FIELDS_TOO_LARGE((short) 431),
+    NO_RESPONSE((short) 444), BLOCKED_BY_WINDOWS_PARENTAL_CONTROLS((short) 450),
+    UNAVAILABLE_FOR_LEGAL_RESONS((short) 451), CLIENT_CLOSED_REQUEST((short) 499), INTERNAL_SERVER_ERROR((short) 500),
+    NOT_IMPLEMENTED((short) 501), BAD_GATEWAY((short) 502), SERVICE_UNAVAILABLE((short) 503),
+    GATEWAY_TIMEOUT((short) 504), VARIANT_ALSO_NEGOTIATES((short) 506), INSUFFICIENT_STORAGE((short) 507),
+    LOOP_DETECTED((short) 508), BANDWIDTH_LIMIT_EXCEEDED((short) 509), NOT_EXTENDED((short) 510),
+    NETWORK_AUTHENTICATION_REQUIRED((short) 511), NETWORK_CONNECT_TIMEOUT_ERROR((short) 599);
+
+
+    private final short Code;
+
+    HTTPCodes(short code) {
+        Code = code;
+    }
+
+    public short getCode() {
+        return Code;
+    }
+}

@@ -1,5 +1,5 @@
 apply plugin: 'java-library'
-apply plugin: 'maven'
+apply plugin: 'maven-publish'
 
 group = 'com.developer.Simple'
 
@@ -20,6 +20,10 @@ dependencies {
     testImplementation 'com.squareup.okhttp3:okhttp:4.6.0'
     testImplementation 'junit:junit:4.13'
 
+}
+
+test {
+    testLogging.showStandardStreams = true
 }
 
 /*task sourcesJar(type: Jar, dependsOn: classes) {

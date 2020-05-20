@@ -1,6 +1,7 @@
 package com.developer.Simple.HTTPS;
 
 import com.developer.Simple.OkHttp;
+import com.developer.Simple.core.HTTPCodes;
 import com.developer.Simple.core.ServerResponse;
 import okhttp3.Response;
 import org.junit.Assert;
@@ -57,7 +58,7 @@ public class HTTPSServerTest {
             sslContext.init(kmf.getKeyManagers(), tmf.getTrustManagers(), null);
 
             HTTPSServer httpsServer = new HTTPSServer(PORT, sslContext, clientRequest ->
-                    new ServerResponse(200, clientRequest.body.getBytes())
+                    new ServerResponse(HTTPCodes.OK, clientRequest.body.getBytes())
             );
 
             client = new OkHttp(true);

@@ -1,14 +1,20 @@
 package com.developer.Simple.HTTP;
 
 
+import com.developer.Simple.core.HTTPCodes;
 import com.developer.Simple.core.ServerResponse;
+import com.sun.net.httpserver.HttpExchange;
 import okhttp3.*;
+import org.apache.commons.lang3.time.DateUtils;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -21,11 +27,22 @@ public class HTTPServerTest {
     private static final int PORT = 9188;
     private static final String URL = "http://localhost:9188";
 
+    private static final ArrayList<Long> RequestTime = new ArrayList<>();
+
     @BeforeClass
-    public static void setup() throws Exception {
+    public static void setup() {
         server = new HTTPServer(PORT, request ->
-                new ServerResponse(200, "Okay".getBytes())
-        );
+                new ServerResponse(HTTPCodes.OK, "Okay".getBytes())
+        ) {
+            @Override
+            public void sendResponse(HttpExchange exchange, ServerResponse serverResponse) throws IOException {
+                LocalDateTime now = LocalDateTime.now();
+
+                super.sendResponse(exchange, serverResponse);
+
+                RequestTime.add(now.until(LocalDateTime.now(), ChronoUnit.MICROS));
+            }
+        };
 
         client = new OkHttpClient();
         try {
@@ -61,7 +78,9 @@ public class HTTPServerTest {
     public void stressTest() {
         List<Request> requests = new ArrayList<>();
 
-        AtomicInteger count = new AtomicInteger(14146);
+        int requestsCount = 14146;
+
+        AtomicInteger count = new AtomicInteger(requestsCount);
 
         for (int i = 0; i < count.get(); i++) {
             requests.add(new Request.Builder()
@@ -70,8 +89,8 @@ public class HTTPServerTest {
             );
         }
 
-        Date init = new Date();
-        System.out.println(init);
+        LocalDateTime init = LocalDateTime.now();
+        final LocalDateTime[] localTime = new LocalDateTime[1];
         requests.forEach(httpRequest ->
             client.newCall(httpRequest).enqueue(new Callback() {
                 @Override
@@ -86,8 +105,7 @@ public class HTTPServerTest {
                     int i = count.decrementAndGet();
 
                     if (i == 0) {
-                        Date end = new Date();
-                        System.out.println(end);
+                        localTime[0] = LocalDateTime.now();
                     }
                 }
             }
@@ -99,6 +117,28 @@ public class HTTPServerTest {
             e.printStackTrace();
         }
 
+        System.out.println(String.format("Total requests %d/%d", requestsCount - count.get(), requestsCount));
         Assert.assertEquals(0, count.get());
+        System.out.println(String.format("Test time %d ms", init.until(localTime[0], ChronoUnit.MILLIS)));
+
+        final long[] max = {0L};
+        final long[] min = {RequestTime.get(0)};
+        final long[] sum = {0};
+
+        RequestTime.forEach(time -> {
+            if (time > max[0]) {
+                max[0] = time;
+            }
+            if (time < min[0]) {
+                min[0] = time;
+            }
+
+            sum[0] += time;
+
+        });
+
+        long avg = sum[0]/RequestTime.size();
+
+        System.out.println(String.format("min: %d µs, max: %d µs, avg: %d µs", min[0], max[0], avg));
     }
 }

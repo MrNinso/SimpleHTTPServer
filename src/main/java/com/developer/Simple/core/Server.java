@@ -1,6 +1,7 @@
 package com.developer.Simple.core;
 
 import com.sun.net.httpserver.HttpExchange;
+import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -35,14 +36,18 @@ public abstract class Server {
         return RequestHandler;
     }
 
-    protected void sendResponse(HttpExchange exchange, ServerResponse serverResponse) throws IOException {
+    public void sendResponse(HttpExchange exchange, ServerResponse serverResponse) throws IOException {
         serverResponse.responsHeader.forEach((key, value) ->
                 exchange.getResponseHeaders().set(key, value)
         );
 
-        exchange.sendResponseHeaders(serverResponse.HttpCode, serverResponse.responseBody.length);
+        exchange.sendResponseHeaders(serverResponse.HttpCode.getCode(), serverResponse.responseBody.available());
+
         OutputStream os = exchange.getResponseBody();
-        os.write(serverResponse.responseBody);
+
+        IOUtils.copy(serverResponse.responseBody, os);
+
+        os.flush();
 
         os.close();
     }
